@@ -1,6 +1,6 @@
 {
-  "name": "sendgrid-templates",
-  "version": "0.0.1",
+  "name": "@devil6x/sendgrid-templates",
+  "version": "0.0.2",
   "description": "CLI tool for deploying dynamic templates to Sendgrid",
   "bin": "./bin/index.js",
   "scripts": {

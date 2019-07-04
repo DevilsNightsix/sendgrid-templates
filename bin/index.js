@@ -5,6 +5,7 @@ var initCmd = require('../lib/commands/init');
 var createTemplateCmd = require('../lib/commands/create-template');
 var attachTemplateCmd = require('../lib/commands/attach-template');
 var createVersionCmd = require('../lib/commands/create-version');
+var updateVersionCmd = require('../lib/commands/update-version');
 
 var {
   listLocalFn,
@@ -33,7 +34,7 @@ program.command('template-attach <templateId>')
   .option('-p, --path <path>', 'path to template')
   .option('-s, --subject <subject>', 'Email subject')
   .option('-d, --data [data]', 'path to test data')
-  .option('-v, --verison [verisonId]', 'update a specific version of template (when empty new version would be created)')
+  .option('-v, --version [verisonId]', 'update a specific version of template (when empty new version would be created)')
   .action((templateId, cmd) => attachTemplateCmd(templateId, cmd.path, cmd.subject, cmd.data, cmd.verisonId))
 
 program.command('version-create <templateId>')
@@ -43,5 +44,13 @@ program.command('version-create <templateId>')
   .option('-s, --subject <subject>', 'Email subject')
   .option('-d, --data [data]', 'path to test data')
   .action((templateId, cmd) => createVersionCmd(templateId, cmd.path, cmd.subject, cmd.data))
+
+program.command('version-update <templateId> <versionId>')
+  .alias('vu')
+  .description('create a new version for specific template')
+  .option('-p, --path <path>', 'path to template')
+  .option('-s, --subject <subject>', 'Email subject')
+  .option('-d, --data [data]', 'path to test data')
+  .action((templateId, versionId, cmd) => updateVersionCmd(templateId, versionId, cmd.path, cmd.subject, cmd.data))
 
 program.parse(process.argv);
